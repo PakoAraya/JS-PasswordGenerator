@@ -130,7 +130,7 @@ p{
   margin-bottom: 3.6rem;
   background-color: var(--dark-black);
   background-image: linear-gradient(var(--green), var(--green));
-  background-size: 50%, 100%;
+  background-size: 50% 100%;
   background-repeat: no-repeat;
 }
 
@@ -198,7 +198,6 @@ input[type=checkbox]{
   display: none;
   content: url('/assets/img/check_black.svg');
   position: absolute;
-  /* top: 3px; */
 }
 
 .custom_checkbox:hover{
@@ -280,5 +279,5 @@ input[type="checkbox"]:focus ~ .custom_checkbox{
 }
 
 .generate_btn:hover path{
-  fill: var(--green)
+  fill: var(--green);
 }
