@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root{
+  --dark-gray: #24232c;
+  --light-gray: #817d92;
+  --half-white: #e6e5ea;
+  --dark-black: #18171f;
+  --green: #a4ffaf;
+  --dark-orange: #f64a4a;
+  --light-orange: #fb7c58;
+  --light-yellow: #f8cd65;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  font-family: Poppins, sans-serif;
+  background: linear-gradient(180deg, #14131b 0%, #08070b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container{
+  margin: 0 auto;
+  max-width: 640px;
+  width: 100%;
+  padding: 0 4rem;
+}
+
+h1{
+  font-size: 2.4rem;
+  text-align: center;
+  color: var(--light-gray);
+  margin-bottom: 3.2rem;
+}
+
+p{
+  font-size: 1.8rem;
+  color: var(--half-white);
+}
+
+/* ================================================================== */
+/*                         PASSWORD FIELD                             */ 
+/* ================================================================== */
+.password_field{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 8rem;
+  padding: 0 3.2rem;
+  margin-bottom: 2.4rem;
+  background-color: var(--dark-gray);
+}
+
+.password_display{
+  font-size: 3.2rem;
+  color: var(--half-white);
+}
+
+.password_placeholder{
+  font-size: 3.2rem;
+  color: var(--half-white);
+}
+
+.copy_wrapper{
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.copy_text{
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.copy_btn{
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+}
+
+.copy_btn:hover{
+  filter: contrast(3.5);
+}
+
+.copy_btn:hover img{
+  filter:contrast(3.5);
+}
+
+/* ================================================================== */
+/*                         PASSWORD FIELD                             */ 
+/* ================================================================== */
+
+
