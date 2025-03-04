@@ -1,6 +1,6 @@
 "use strict";
 
-// Selección de elementos del DOM
+// DOM elements selection
 const passwordDisplay = document.querySelector(".password_display");
 const passwordPlaceholder = document.querySelector(".password_placeholder");
 const passwordCopyText = document.querySelector(".copy_text");
@@ -12,7 +12,7 @@ const checkBoxes = document.querySelectorAll("input[type=checkbox]");
 const strengthDesc = document.querySelector(".strength_rating_text");
 const strengthBars = document.querySelectorAll(".bar");
 
-// Conjuntos de caracteres para la generación de contraseñas
+// Character sets for password generation
 const characterSets = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowercase: "abcdefghijklmnopqrstuvwxyz",
@@ -20,7 +20,7 @@ const characterSets = {
   symbols: "!@#$%^&*()"
 };
 
-// Función para actualizar el valor y el estilo del slider
+// Function to update slider value and style
 function updateSlider() {
   const value = lengthSlider.value;
   charCount.textContent = value;
@@ -29,11 +29,11 @@ function updateSlider() {
   const max = parseInt(lengthSlider.max);
   const percentage = ((value - min) * 100) / (max - min);
   
-  // Aseguramos compatibilidad cross-browser para el gradiente
+  // Cross-browser compatible gradient styling
   lengthSlider.style.background = `linear-gradient(to right, var(--green) ${percentage}%, var(--dark-black) ${percentage}%)`;
 }
 
-// Función para restablecer los estilos de las barras de fortaleza
+// Function to reset strength bars styles
 function resetBarsStyles() {
   strengthBars.forEach(function(bar) {
     bar.style.backgroundColor = "transparent";
@@ -41,7 +41,7 @@ function resetBarsStyles() {
   });
 }
 
-// Función para estilizar las barras según la fortaleza
+// Function to style bars based on strength
 function styleBars(bars, color) {
   bars.forEach(function(bar) {
     bar.style.backgroundColor = color;
@@ -49,7 +49,7 @@ function styleBars(bars, color) {
   });
 }
 
-// Función para actualizar la fortaleza de la contraseña
+// Function to update password strength indicator
 function updatePasswordStrength() {
   const length = parseInt(lengthSlider.value);
   const checkedOptions = Array.from(checkBoxes).filter(function(box) {
@@ -62,6 +62,7 @@ function updatePasswordStrength() {
     color: "var(--dark-orange)"
   };
 
+  // Strength calculation logic
   if (length >= 12 && checkedOptions >= 3) {
     strength = { text: "STRONG", level: 4, color: "var(--green)" };
   } else if (length >= 8 && checkedOptions >= 2) {
@@ -76,7 +77,7 @@ function updatePasswordStrength() {
   styleBars(barsToFill, strength.color);
 }
 
-// Función para generar la contraseña
+// Function to generate password
 function generatePassword(e) {
   e.preventDefault();
   
@@ -85,10 +86,12 @@ function generatePassword(e) {
     return box.checked;
   });
   
+  // Validate at least one option is selected
   if (checkedBoxes.length === 0) {
     return;
   }
 
+  // Build character pool
   checkedBoxes.forEach(function(box) {
     chars += characterSets[box.value];
   });
@@ -96,6 +99,7 @@ function generatePassword(e) {
   let password = "";
   const length = parseInt(lengthSlider.value);
   
+  // Generate random password
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * chars.length);
     password += chars[randomIndex];
@@ -104,11 +108,11 @@ function generatePassword(e) {
   passwordPlaceholder.textContent = password;
 }
 
-// Función para copiar la contraseña
+// Function to copy password to clipboard
 function copyPassword() {
   const password = passwordPlaceholder.textContent;
   
-  // Usamos el método más compatible para copiar
+  // Cross-browser compatible copy method
   const textArea = document.createElement("textarea");
   textArea.value = password;
   document.body.appendChild(textArea);
@@ -127,7 +131,7 @@ function copyPassword() {
   document.body.removeChild(textArea);
 }
 
-// Event Listeners
+// Event listeners
 lengthSlider.addEventListener("input", function() {
   updateSlider();
   updatePasswordStrength();
@@ -140,12 +144,12 @@ checkBoxes.forEach(function(checkbox) {
 passwordForm.addEventListener("submit", generatePassword);
 passwordCopyBtn.addEventListener("click", copyPassword);
 
-// Inicialización
+// Initialization
 document.addEventListener("DOMContentLoaded", function() {
   updateSlider();
   updatePasswordStrength();
 });
 
-// Llamada inicial para asegurar que el slider tenga el valor correcto
+// Initial call to set correct slider value
 updateSlider();
 updatePasswordStrength();
